@@ -1,11 +1,12 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 
-const Search = () => {
+const Search = ({setWeatherDetails}) => {
   const [search, setSearch] = useState("");
 
   const handleOnChange = (e) => {
     setSearch(e.target.value);
+    setWeatherDetails(null)
   }
   console.log(search)
   console.log(import.meta.env.VITE_API_KEY)
@@ -14,12 +15,12 @@ const Search = () => {
 
     try {
       const response = await axios(`https://api.weatherapi.com/v1/current.json?key=${import.meta.env.VITE_API_KEY}&q=${search}&aqi=no`)
-      console.log(response.data)
+      //console.log(response.data)
+      setWeatherDetails(response.data)
     } catch (error) {
       console.log(error)
     }
   }
-
 
   return (
     <div className="search-section">

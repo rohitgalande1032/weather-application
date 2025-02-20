@@ -8,16 +8,16 @@ import { useState } from 'react'
 
 function App() {
   const [weatherDetails, setWeatherDetails] = useState(null)
-
+  console.log(weatherDetails)
   return (
-    <>
-     <div>
+    <div className='app'>
+     <div className='container'>
       <Header />
-      <Search />
-      {weatherDetails && <WeatherCard />}
+      <Search setWeatherDetails={setWeatherDetails}/>
+      {weatherDetails && <WeatherCard weatherDetails={weatherDetails}/>}
       <Footer />
      </div>
-    </>
+    </div>
   )
 }
 
